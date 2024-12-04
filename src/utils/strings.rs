@@ -12,6 +12,23 @@ pub fn split_input_into_vector(input: &str) -> Vec<(i32, i32)> {
         .collect()
 }
 
+pub fn split_element_by_element_array_input_into_vector<T>(input: &str) -> Vec<Vec<T>>
+where
+    T: FromStr,
+    T::Err: std::fmt::Debug,
+{
+    input
+        .lines()
+        .map(|line| {
+            let mut vec: Vec<T> = Vec::new();
+            for item in line.chars() {
+                vec.push(item.to_string().parse::<T>().unwrap());
+            }
+            return vec;
+        })
+        .collect()
+}
+
 pub fn split_array_input_into_vector<T>(input: &str) -> Vec<Vec<T>>
 where
     T: FromStr,

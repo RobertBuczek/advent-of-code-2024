@@ -1,9 +1,22 @@
 use std::collections::HashMap;
+use std::hash::Hash;
 
 pub fn group_and_count(vec: Vec<i32>) -> HashMap<i32, i32> {
     let mut counts = HashMap::new();
 
     for &item in vec.iter() {
+        *counts.entry(item).or_insert(0) += 1;
+    }
+
+    counts
+}
+
+pub fn group_and_count_by_type<T>(vec: Vec<T>) -> HashMap<T, i32>
+where
+    T: Eq + Hash,
+{
+    let mut counts: HashMap<T, i32> = HashMap::new();
+    for item in vec {
         *counts.entry(item).or_insert(0) += 1;
     }
 
