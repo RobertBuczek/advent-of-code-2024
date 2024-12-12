@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::hash::Hash;
 
 pub fn part1(input: &str) -> i64 {
     let mut memo: HashMap<(i64, i32), i64> = HashMap::new();
@@ -25,7 +24,7 @@ fn parse(input: &str) -> Vec<i64> {
         .collect()
 }
 
-fn count_stones(stone: i64, blinks_left: i32, mut memo: &mut HashMap<(i64, i32), i64>) -> i64 {
+fn count_stones(stone: i64, blinks_left: i32, memo: &mut HashMap<(i64, i32), i64>) -> i64 {
     if blinks_left == 0 {
         return 1;
     }
@@ -48,8 +47,6 @@ fn count_stones(stone: i64, blinks_left: i32, mut memo: &mut HashMap<(i64, i32),
     memo.insert(key, result);
     result
 }
-
-
 
 #[cfg(test)]
 mod tests {
